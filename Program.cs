@@ -1,3 +1,5 @@
+using HotelListing.API.Data;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options => options.AddPolicy("alowAll", b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
+
+var connectionString = builder.Configuration.GetConnectionString("HotelListing.Api");
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlServer(connectionString)
+);
 
 var app = builder.Build();
 
