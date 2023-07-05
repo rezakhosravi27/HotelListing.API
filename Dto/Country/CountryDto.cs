@@ -1,0 +1,13 @@
+﻿using HotelListing.API.Dto.Hotels;
+using HotelListing.API.Models;
+
+namespace HotelListing.API.Dto.Country
+{
+    public class CountryDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ShortName { get; set; }
+        public List<HotelDto> Hotels { get; set; }
+    }
+}
