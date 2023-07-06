@@ -50,7 +50,7 @@ namespace HotelListing.API.Repository
 
         public async Task UpdateAsync(T entity)
         {
-            _context.Set<T>().Update(entity);
+            _context.Set<T>().Update(entity); 
             await _context.SaveChangesAsync();
         }
     }
