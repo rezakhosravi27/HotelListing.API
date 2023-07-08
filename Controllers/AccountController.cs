@@ -1,7 +1,6 @@
 ﻿using HotelListing.API.Contracts;
 using HotelListing.API.Data;
 using HotelListing.API.Dto.User;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
