@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelListing.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230707120247_UserRoleChangeUppercase")]
-    partial class UserRoleChangeUppercase
+    [Migration("20230711074217_AddIdentity")]
+    partial class AddIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,13 +211,13 @@ namespace HotelListing.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "db4afc97-c770-4f9a-90a7-e386555b7849",
+                            Id = "c1b544dd-71b3-4f56-a63b-b011ce735fb0",
                             Name = "adminstrator",
                             NormalizedName = "ADMINSTRATOR"
                         },
                         new
                         {
-                            Id = "99f27a32-9aab-48c0-b534-9a59b893bcd4",
+                            Id = "52dc6a1b-b09d-4430-bf84-4d1b47d06d96",
                             Name = "User",
                             NormalizedName = "USER"
                         });

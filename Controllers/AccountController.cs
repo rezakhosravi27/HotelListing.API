@@ -52,7 +52,7 @@ namespace HotelListing.API.Controllers
                 return Unauthorized();
             }
 
-            return Ok(); 
+            return Ok(authResponse); 
 
         }
     }

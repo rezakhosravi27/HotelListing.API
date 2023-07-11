@@ -25,7 +25,6 @@ namespace HotelListing.API.Repository
             _Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         public async Task<AuthResponseDto> Login(LoginDto loginDto)
         {
@@ -36,13 +35,13 @@ namespace HotelListing.API.Repository
                 return null;
             }
 
-            var token = GenerateToken(user);
+            var token = await GenerateToken(user);
 
             return new AuthResponseDto
             {
                 UserId = user.Id,
                 Token = token
-            }
+            }; 
         }
 
         public async Task<IEnumerable<IdentityError>> Register(ApiUserDto userDto)
@@ -62,7 +61,7 @@ namespace HotelListing.API.Repository
 
         private async Task<string> GenerateToken(APIUser user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_Configuration["JwtSettings: Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_Configuration["JwtSettings:Key"]));
 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -82,10 +81,10 @@ namespace HotelListing.API.Repository
             .Union(roleClaims).Union(userClaims);
 
             var token = new JwtSecurityToken(
-                    issuer: _Configuration["Jwt: Issuer"], 
-                    audience: _Configuration["Jwt: Audience"], 
+                    issuer: _Configuration["JwtSettings:Issuer"], 
+                    audience: _Configuration["JwtSettings:Audience"], 
                     claims: claims, 
-                    expires: DateTime.Now.AddMinutes(Convert.ToInt32(_Configuration["Jwt: DurationInMinutes"])),
+                    expires: DateTime.Now.AddMinutes(Convert.ToInt32(_Configuration["JwtSettings:DurationInMinutes"])),
                     signingCredentials: credentials
                 );
 
