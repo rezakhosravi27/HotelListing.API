@@ -30,6 +30,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Hotels
         [HttpGet]
+        [ResponseCache(Duration = 10)]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetHotels()
         {
             var hotels = await _hotelRepository.GetAllAsync();

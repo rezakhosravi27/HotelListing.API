@@ -5,6 +5,7 @@ using HotelListing.API.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Operations;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -58,6 +59,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddResponseCaching(); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -73,8 +76,10 @@ app.UseSerilogRequestLogging();
 
 app.UseCors("alowAll");
 
+app.UseResponseCaching();
+
 app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthorization(); 
 
 app.MapControllers();
 
