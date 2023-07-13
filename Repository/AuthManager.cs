@@ -17,8 +17,6 @@ namespace HotelListing.API.Repository
             _userManager = userManager;
         }
 
-        public UserManager<APIUser> UserManager { get; }
-
         public async Task<IEnumerable<IdentityError>> Register(ApiUserDto userDto)
         {
             var user = _mapper.Map<APIUser>(userDto);
