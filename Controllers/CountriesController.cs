@@ -24,13 +24,21 @@ namespace HotelListing.API.Controllers
         }
 
         // GET: api/Countries
-        [HttpGet]
+        [HttpGet("GetAll")]
         [ResponseCache(Duration = 20)]
         public async Task<ActionResult<IEnumerable<GetCountryDto>>> GetCountries()
         {
             var countries = await _countryRepository.GetAllAsync(); 
             var records = _mapper.Map<IEnumerable<GetCountryDto>>(countries);
             return Ok(records);
+        }
+
+        [HttpGet]
+        [ResponseCache(Duration = 20)]
+        public async Task<ActionResult<PagedResult<GetCountryDto>>> GetPagedCountries([FromQuery] QueryParameters queryParameters)
+        {
+            var PagedCountriesResult = await _countryRepository.GetAllAsync<GetCountryDto>(queryParameters);
+            return Ok(PagedCountriesResult);
         }
 
         // GET: api/Countries/5

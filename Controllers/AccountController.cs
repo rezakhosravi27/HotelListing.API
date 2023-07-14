@@ -12,7 +12,7 @@ namespace HotelListing.API.Controllers
     {
         private readonly IAuthManager _authManager;
 
-        public AccountController(IAuthManager authManager, UserManager<APIUser> userManager)
+        public AccountController(IAuthManager authManager)
         {
             this._authManager = authManager;
         }
